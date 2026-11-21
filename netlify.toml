@@ -1,0 +1,32 @@
+# netlify.toml — Solana Meme Terminal
+#
+# Netlify mendeteksi Next.js otomatis dan memasang adapter Next.js (OpenNext) terbaru.
+# JANGAN tambahkan [[plugins]] "@netlify/plugin-nextjs" secara manual: itu mengunci
+# versi adapter dan mematikan update otomatisnya.
+#
+# Lint & type-check:
+# - Next.js 16 tidak menjalankan ESLint saat `next build`, jadi lint tidak bisa
+#   menggagalkan deploy. Jalankan `npm run check` di komputer sebelum push.
+# - Type-check TypeScript tetap aktif dengan sengaja (kode menandatangani transaksi).
+#   Bila build gagal, deploy sebelumnya tetap online.
+#
+# Env var wajib (NEXT_PUBLIC_HELIUS_RPC_URL, JUPITER_API_KEY) dicek oleh
+# next.config.mjs saat build. Isi di: Project configuration → Environment variables.
+# Variabel NEXT_PUBLIC_* ditanam saat build → setelah mengubahnya, deploy ulang.
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  # Sama dengan "engines" di package.json. Node 24 = LTS aktif; juga runtime default
+  # Netlify Functions, jadi build & API route memakai versi yang sama.
+  NODE_VERSION = "24"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+# Region API routes (Netlify Functions):
+# - Paket gratis: terkunci di US East (Ohio, `cmh`). Setiap Buy/Sell lewat proxy
+#   /api/jupiter dan /api/jito akan bolak-balik Indonesia ↔ AS.
+# - Paket Pro: ubah ke Asia Pacific (Singapore, `sin`) di
+#   Cloud compute → Functions → Region, lalu deploy ulang.
+#   (Untuk Next.js, region TIDAK bisa diatur dari file ini — hanya dari dashboard.)

@@ -1,0 +1,43 @@
+{
+  "name": "solana-meme-terminal",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Web trading terminal ringan untuk meme coin Solana: burner wallet 1-klik, Jupiter Swap API V2, Helius Sender & Jito Block Engine.",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "next typegen && tsc --noEmit",
+    "check": "npm run typecheck && npm run lint",
+    "verify": "npm run check && npm run build"
+  },
+  "dependencies": {
+    "@solana/spl-token": "0.4.15",
+    "@solana/web3.js": "1.98.4",
+    "bs58": "6.0.0",
+    "buffer": "6.0.3",
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "server-only": "0.0.1",
+    "zustand": "5.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.5",
+    "@types/node": "24.19.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.4.6",
+    "postcss": "8.5.33",
+    "tailwindcss": "4.3.5",
+    "typescript": "5.9.3"
+  },
+  "overrides": {
+    "@solana/web3.js": "$@solana/web3.js"
+  }
+}
