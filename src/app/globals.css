@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+/* Token warna terminal — dipakai sebagai utilitas Tailwind: bg-panel, text-up, border-line, dst. */
+@theme {
+  --color-bg: #0a0d12;
+  --color-panel: #10141b;
+  --color-panel-2: #171c26;
+  --color-line: #1e2531;
+  --color-line-strong: #2b3445;
+  --color-fg: #e8ebf1;
+  --color-muted: #8b95a8;
+  --color-dim: #5c6679;
+  --color-up: #16c784;
+  --color-up-strong: #10a76e;
+  --color-down: #f0465b;
+  --color-down-strong: #d1364a;
+  --color-accent: #7c5cff;
+  --color-warn: #f5a524;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "JetBrains Mono", "Cascadia Code", Menlo, Consolas, monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100dvh;
+}
+
+/* Angka rata kanan tidak "menari" saat harga berubah. */
+.font-mono {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hilangkan spinner input number */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Scrollbar tipis ala terminal */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-strong) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--color-line-strong);
+  border-radius: 999px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+details > summary::before {
+  content: "▸ ";
+  color: var(--color-dim);
+}
+details[open] > summary::before {
+  content: "▾ ";
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 40%, transparent);
+}
